@@ -34,10 +34,32 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+
+#Variables
+servicefile = 'Bikeshare-ridership-2021-utf8-small.csv'
+initialStation = None
+searchMethod = None
+
+
+
+
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("1- Iniciar analizador")
+    print("2- Cargar información bicicletas de Toronto")
+
+
+def optionTwo(cont):
+    print("\nCargando información de transporte de Toronto....")
+    controller.loadServices(cont, servicefile)
+    """
+    numedges = controller.totalConnections(cont)
+    numvertex = controller.totalStops(cont)
+    print('Numero de vertices: ' + str(numvertex))
+    print('Numero de arcos: ' + str(numedges))
+    print('El limite de recursion actual: ' + str(sys.getrecursionlimit()))
+    """
+
 
 catalog = None
 
@@ -48,11 +70,12 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
-
+        print("\nInicializando....")
+        cont = controller.init()
+        
     elif int(inputs[0]) == 2:
-        pass
-
+        optionTwo(cont)
+    
     else:
         sys.exit(0)
 sys.exit(0)
