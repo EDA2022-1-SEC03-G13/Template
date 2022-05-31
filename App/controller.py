@@ -57,7 +57,7 @@ def loadServices(analyzer, tripsfile):
     for trip in input_file:
         model.addTrip(analyzer, trip)
 
-    #model.createTripsGraph(analyzer)
+    model.createTripsGraph(analyzer)
 
     return analyzer
 

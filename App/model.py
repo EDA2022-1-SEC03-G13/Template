@@ -97,7 +97,6 @@ def addTrip(analyzer, trip):
             mp.put(analyzer['routes_avg_duration'], origin_id, mp.newMap(numelements=688, maptype='PROBING', loadfactor=0.5))
 
 
-    print(gr.numVertices(analyzer['connections']))
 
 
 
@@ -107,15 +106,16 @@ def createTripsGraph(analyzer):
     
     origin_list = mp.keySet(analyzer['routes_avg_duration'])
     for key in lt.iterator(origin_list):
-        destinations_map = mp.get(analyzer['stops'], key)['value']
+        destinations_map = mp.get(analyzer['routes_avg_duration'], key)['value']
         destinations_list = mp.keySet(destinations_map)
         for key2 in lt.iterator(destinations_list):
             entry = mp.get(destinations_map, key2)
             trip_info = me.getValue(entry)
             avg_duration = trip_info['duration']/float(trip_info['counter'])
-            addConnection(analyzer['connections'], key, key2, avg_duration)
+            #addConnection(analyzer['connections'], key, key2, avg_duration)
+            gr.addEdge(analyzer['connections'], key, key2, avg_duration)
 
-    print(gr.vertices(analyzer['connections']))
+    #print(gr.vertices(analyzer['connections']))
         
     return analyzer
 
