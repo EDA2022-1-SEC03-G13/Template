@@ -115,7 +115,11 @@ def createTripsGraph(analyzer):
             #addConnection(analyzer['connections'], key, key2, avg_duration)
             gr.addEdge(analyzer['connections'], key, key2, avg_duration)
 
-    #print(gr.vertices(analyzer['connections']))
+    """
+    print('Vertices',gr.numVertices(analyzer['connections']))
+    print('Arcos', gr.numEdges(analyzer['connections']))
+    print(gr.getEdge(analyzer['connections'], 7176, 7033))
+    """
         
     return analyzer
 
